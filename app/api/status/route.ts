@@ -3,9 +3,8 @@ import { NextResponse } from "next/server";
 export const runtime = "nodejs";
 
 export async function GET(req: Request) {
-  const id = process.env.HF_API_KEY_ID;
-  const secret = process.env.HF_API_KEY_SECRET;
-  if (!id || !secret) {
+  const apiKey = process.env.HIGGSFIELD_API_KEY;
+  if (!apiKey) {
     return NextResponse.json({ error: "Higgsfield credentials are not configured on the server." }, { status: 500 });
   }
 
@@ -15,7 +14,7 @@ export async function GET(req: Request) {
   }
 
   const upstream = await fetch(`https://api.higgsfield.ai/requests/${encodeURIComponent(requestId)}/status`, {
-    headers: { "Authorization": `Key ${id}:${secret}` },
+    headers: { "Authorization": `Key ${apiKey}` },
     cache: "no-store"
   });
   const data = await upstream.json();
