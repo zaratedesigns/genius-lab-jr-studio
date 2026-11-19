@@ -3,9 +3,9 @@ import { NextResponse } from "next/server";
 export const runtime = "nodejs";
 
 export async function POST(req: Request) {
-  const id = process.env.HF_API_KEY_ID;
-  const secret = process.env.HF_API_KEY_SECRET;
-  if (!id || !secret) {
+  const apiKey = process.env.HIGGSFIELD_API_KEY;
+  
+  if (!apiKey) {
     return NextResponse.json({ error: "Higgsfield credentials are not configured on the server." }, { status: 500 });
   }
 
@@ -19,7 +19,7 @@ export async function POST(req: Request) {
     const upstream = await fetch("https://api.higgsfield.ai/bytedance/seedance-2.0/text-to-video", {
       method: "POST",
       headers: {
-        "Authorization": `Key ${id}:${secret}`,
+        "Authorization": `Key ${apiKey}`,
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
