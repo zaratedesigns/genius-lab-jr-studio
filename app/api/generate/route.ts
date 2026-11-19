@@ -4,8 +4,7 @@ export const runtime = "nodejs";
 
 export async function POST(req: Request) {
   const apiKey = process.env.HIGGSFIELD_API_KEY;
-  
-  if (!apiKey) {
+    if (!apiKey) {
     return NextResponse.json({ error: "Higgsfield credentials are not configured on the server." }, { status: 500 });
   }
 
