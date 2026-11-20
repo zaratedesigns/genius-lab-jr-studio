@@ -46,7 +46,6 @@ export async function POST(req: Request) {
           prompt,
           resolution: "720p",
           duration: 5,
-          aspect_ratio: "16:9",
           generate_audio: false,
         }),
         cache: "no-store",
