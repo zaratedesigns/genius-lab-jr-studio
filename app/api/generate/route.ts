@@ -15,7 +15,7 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: "Enter a prompt between 1 and 4,000 characters." }, { status: 400 });
     }
 
-    const upstream = await fetch("https://api.higgsfield.ai/bytedance/seedance-2.0/text-to-video", {
+    const upstream = await fetch("https://api.higgsfield.ai/bytedance/seedance-2.5/text-to-video", {
       method: "POST",
       headers: {
         "Authorization": `Key ${apiKey}`,
